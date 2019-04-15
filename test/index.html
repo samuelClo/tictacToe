@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row d-flex justify-content-center ">
+        <div class="row ">
+            <div class="col-4 case d-flex align-items-center justify-content-center" data-Yposition="1"
+                 data-Xposition="1"></div>
+            <div class="col-4 case d-flex align-items-center justify-content-center" data-Yposition="1"
+                 data-Xposition="2"></div>
+            <div class="col-4 case d-flex align-items-center justify-content-center" data-Yposition="1"
+                 data-Xposition="3"></div>
+        </div>
+        <div class="row ">
+            <div class="col-4 case d-flex align-items-center justify-content-center" data-Yposition="2"
+                 data-Xposition="1"></div>
+            <div class="col-4 case d-flex align-items-center justify-content-center" data-Yposition="2"
+                 data-Xposition="2"></div>
+            <div class="col-4 case d-flex align-items-center justify-content-center" data-Yposition="2"
+                 data-Xposition="3"></div>
+        </div>
+        <div class="row ">
+            <div class="col-4 case d-flex align-items-center justify-content-center" data-Yposition="3"
+                 data-Xposition="1"></div>
+            <div class="col-4 case d-flex align-items-center justify-content-center" data-Yposition="3"
+                 data-Xposition="2"></div>
+            <div class="col-4 case d-flex align-items-center justify-content-center" data-Yposition="3"
+                 data-Xposition="3"></div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+    let allCase = document.querySelectorAll(".case")
+    let switchProfil = 0
+
+
+    let arrayUser1 = []
+    let arrayUser2 = []
+    let responseArray = [
+        ['Y1X1', 'Y1X2', 'Y1X3'],
+        ['Y2X1', 'Y2X2', 'Y2X3'],
+        ['Y3X1', 'Y3X2', 'Y3X3'],
+        ['Y1X1', 'Y2X1', 'Y3X1'],
+        ['Y1X2', 'Y2X2', 'Y3X2'],
+        ['Y1X3', 'Y2X3', 'Y3X3'],
+        ['Y1X1', 'Y2X2', 'Y3X3'],
+        ['Y1X3', 'Y2X2', 'Y3X3'],
+
+    ]
+    let j = 0
+    let p = 0
+
+    let compareArray = function (arrayToCompare, arrayTestCompare, player) {
+        console.log(arrayTestCompare)
+        console.log(arrayToCompare)
+
+        for (let i = 0 ; i < arrayToCompare.length ; i ++ ) {
+
+          //  console.log(arrayToCompare[i])
+            p=0
+            for (let j = 0 ; j < arrayToCompare[i].length; j ++){
+               // console.log(arrayToCompare[i][j])
+
+                for (let k = 0; k < arrayTestCompare.length; k++){
+                //    console.log(arrayToCompare[i][j], arrayTestCompare[k])
+
+                    if (arrayToCompare[i][j] ===  arrayTestCompare[k]) {
+                        p++
+                        console.log(p)
+                    }
+
+                    if (p===3){
+                        if (player===1){
+                            alert("player 1  gagné")
+                        } else {
+                            alert("player 2  gagné")
+                        }
+                    }
+
+
+                }
+
+                console.log("---------")
+            }
+
+
+
+
+        }
+
+    }
+
+
+    allCase.forEach(function (myCase) {
+        myCase.addEventListener("click", function () {
+
+
+            if (switchProfil === 0 && !this.getAttribute("data-user")) {
+                this.innerHTML = "<i class=\"fas fa-times\" style='color: #ff3451; font-size: 50px'></i>"
+                this.setAttribute("data-user", "user1")
+                arrayUser1.push(`Y${this.getAttribute("data-Yposition")}X${this.getAttribute("data-Xposition")}`)
+                switchProfil = 1
+            } else if (switchProfil === 1 && !this.getAttribute("data-user")) {
+                this.innerHTML = "<i class=\"far fa-circle\" style='color: #3dc451; font-size: 50px'></i>"
+                this.setAttribute("data-user", "user2")
+
+                switchProfil = 0
+            }
+
+
+            compareArray(responseArray, arrayUser1, 1)
+            compareArray(responseArray, arrayUser1, 1)
+
+
+            /*   console.log(arrayUser1)
+               console.log(arrayUser2) */
+
+        })
+    });
+
+
+</script>
+
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+
+<script type="text/javascript" src="http://livejs.com/live.js"></script>
+<script src="assets/js/jquery-3.3.1.slim.min.js"></script>
+<script src="assets/js/popper.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+
+
+</body>
+</html>
